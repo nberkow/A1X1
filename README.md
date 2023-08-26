@@ -10,7 +10,7 @@ PLS is evaluating a company called NewCo in the endometriosis space. They are fo
 ## Overall Approach
 
 ### Background
-My first step was to read about endometriosis in some high level sources (e.g. Wikipedia, review articles). My goal was to get familiar with the disease and the state of research into it. I found some key takeaways:
+My first step was to read about endometriosis in some high level sources (e.g. Wikipedia, review articles). My goal was to build familiarity with the disease and the state of research into it. I found some key takeaways:
 
 #### Endometriosis
 Endometriosis is a disease of the female reproductive system where endometrial tissue that normally grows inside the uterus grows outside the uterus (or on a part of the uterus that doesn't normally contain those cells).
