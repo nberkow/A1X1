@@ -144,7 +144,7 @@ I saw two distinct populations separated by PC1. To connect this to the biology,
 
 Here, the gene HBB is the greatest contributor to PC1, followed by HBA2. MALAT1 is the top contributor to PC2. I recognized two categories of genes in these lists. There are a number of hemoglobin subunits (HB) as well as several antibody genes (IG). Both of these would be consistent with cells from blood. I didn't recognize MALAT1. It is a long non-coding RNA implicated in a few biological processes.
 
-The next step was to experiment with removing outliers. Outliers in PCA can be important hits, but they can also mask other signals. I noticed that PC1 was dominated by a small number of extreme outliers. I this histogram, most of the data is centered a little below zero with a tight spread, but a few cells have very high values.
+The next step was to experiment with removing outliers. Outliers in PCA can be important hits, but they can also mask other signals. I noticed that PC1 was dominated by a small number of extreme outliers. In this histogram, most of the data is centered a little below zero with a tight spread, but a few cells have very high values.
 
 ![hist1](./figures/hist1.png)
 
