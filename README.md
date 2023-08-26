@@ -15,7 +15,7 @@ My first step was to read about endometriosis in some high level sources (e.g. W
 #### Endometriosis
 
 Endometriosis is a disease of the female reproductive system where endometrial tissue that normally grows inside the uterus grows outside the uterus (or on a part of the uterus that doesn't normally contain those cells).
-- The range of symptoms is wide. Some people experience a lot pain, other are asymptomatic
+- The range of symptoms is wide. Some patients experience a lot pain, other are asymptomatic
 - It can cause infertility even when it doesn’t cause pain or other symptoms. Some patients are diagnosed for the first time during infertility treatment
 - Endometriosis is at "the extreme end of diagnostic inefficiency" (wiki). People see 7 doctors on average before a correct diagnosis
 - There were no good biomarkers as of 2016 - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6953323/
@@ -27,20 +27,21 @@ Endometriosis is a disease of the female reproductive system where endometrial t
     - Children or siblings of women with endometriosis are at higher risk of developing endometriosis themselves
     - There is an approximate six-fold increased incidence in individuals with an affected first-degree relative
 - There are 9 GWAS loci of interest including 8 protein coding genes
-- There are many proposed mechanism, but no general agreement
+- There are currently many proposed mechanisms, but no general agreement
     - It could be a genetic difference in the affected cells
     - Or it could be in a hormone producing tissue elsewhere
     - Possible autoimmune component. It’s loosely linked to Graves disease
-    - Rogue stem cells developing the wrong way in the wrong place
+    - Rogue stem cells (possibly from bone marrow) developing the wrong way in the wrong place
 
-I drew a cartoon to summarize my thoughts on potentially relevant cell types. Because of the disease process, I might expect to find important genes in the endomitriosis cells themselves. There may also be factors in the healthy endometrium that pre-dispose it to form ectopically. The host tissue where the endometriosis grows may also have sucesptibility factors.
-
-Because there is some suspicion that autoimmunity is involved, important factors may exist in one or more immune cells.
-
-Healty endometrium and endometriosis are both hormone sensitive tissues, so hormone producing tissue may play a role. The picture doesn't include possible factors in stem cells. These both seem plausible, but neither are well studied.
+I drew a cartoon to summarize my thoughts on potentially relevant cell types. Because of the disease process, I might expect to find important genes in the endomitriosis cells themselves. There may also be factors in the healthy endometrium that pre-dispose it to form ectopically. The host tissue where the endometriosis grows may also have sucesptibility factors that could be targetted.
 
 ![cartoon](./figures/cartoon.png)
 
+Because there is some suspicion that autoimmunity is involved, important factors may exist in one or more immune cell types.
+
+Healty endometrium and endometriosis are both hormone sensitive tissues, so hormone producing tissue may play a role. This explanation seems plausible but complicated.
+
+The picture doesn't include possible factors in stem cells. These both seem plausible, but neither are well studied.
 
 Sources
 - https://en.wikipedia.org/wiki/Endometriosis
@@ -49,13 +50,13 @@ Sources
 - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5737931/
 - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6953323/
 
-### Genese of Interest
+### Genes of Interest
 
 I wanted to create a list of candidate genes that might be involved for downstream analysis. In a real situation, this would include A1X1 and any other genes of interest to NewCo's approach. For this exercize, I started with a list of published GWAS hits for the disease. I used these to search a database of protein functional interactions (https://string-db.org/). This found some additional genes as well as a proposed interaction network.
 
 ![network](./figures/network.png)
 
-Gene interactions are challenging to construct and are often full of spurious interactions. Even the starting set only has GWAS evidence, which isn't strong on its own. Keeping those caveats in mind, I planned to use these as a starting point to guide analysis. 
+Gene interaction networks are challenging to construct and are often full of spurious interactions. Even the starting set only has GWAS evidence, which isn't strong on its own. Keeping those caveats in mind, I planned to use these as a starting point to guide my analysis. 
 
 Database interaction code:
 - get_gene_interactions.py
@@ -71,17 +72,19 @@ I would expect A1X1 to be expressed in at least one of these tissue types. Expre
 
 #### Single Sample Analysis
 
-A single sample likely has a mixture of cell types from the same patient. It might be possible to resolve cell types and find expression patterns just using one endometriosis sample. Some questions that could be pursued in this way are:
+A single sample likely has a mixture of cell types from the same patient. It might be possible to resolve cell types by clustering and find expression patterns just using one endometriosis sample. Some questions that could be pursued in this way are:
 - what cell types are present?
 - does gene expression distinguish endometriosis tissue different from normal endometrium?
-
+- Is there evidence that A1X1 is a good target?
 
 #### Cross Sample Analysis
 
-Studies that collect endometriosis samples sometimes also collect healthy samples from the same patient. These could be used to help resolve cell types by comparing expression clusters. It might also be possible to label the different samples and combine them before looking for clusters.
+Studies that collect endometriosis samples sometimes also collect healthy samples from the same patient. These could be compared with their paired endometriosis samples after clustering. It might also be possible to label the different samples and combine them before looking for clusters. 
 
-Comparing samples from multiple patients could be done in a similar way, either by calling clusters in each sample and combining them or by labeling them and clustering them together. One possible effect it that patient-specific genetic effects would be obscured leaving more universal signals about the disease. It might also get at some questions about the disease process:
-- Is endometriosis a single disease process or are their subtypes?
+Comparing samples across multiple patients could be done in a similar way, either by calling clusters in each sample and trying to form meta-clusters or by labeling them and clustering them together. One possible effect might be that patient-specific genetic effects would be obscured revealing more universal signals about the disease. 
+
+In general this would be a more powerful way of finding genes related to the disease using much more data. It might also get at some questions about the disease process:
+- Is endometriosis a single disease process or are there subtypes in different patients?
 - Which expression patterns seem consistent across patients?
 - Is A1X1 a general target or is it specific to a sub-population?
 
@@ -99,7 +102,7 @@ There are a number of single cell RNA-Seq datasets available. Some studies focus
 - https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE179640
 
 #### Bulk RNA-Seq of cultured cells
-Bulk RNA-Seq has limited value for samples with a mixture of cells. I found an interesting data set where RNA-Seq was done on organoids from patient cells. It has pairs of samples from healthy endometrial tissue as well as endometriosis from the same patients. The organoids probably have expression patterns different from cells in vivo, but they can be compared to the single cell clusters to help identify them.
+Bulk RNA-Seq has limited value for samples containing a mixture of cells. I found an interesting data set where RNA-Seq was done on organoids from patient cells.  It has pairs of samples from healthy endometrial tissue as well as endometriosis from the same patients. The organoids probably have expression patterns different from cells in vivo, but they can be compared to the single cell clusters to help identify them.
 
 - https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE118928
 
