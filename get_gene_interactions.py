@@ -17,7 +17,7 @@ class GeneInteractionFinder:
 
         params = {
             "identifiers" : "%0d".join(genes),
-            "species" : 9606,                  # Human
+            "species" : 9606,  # Human
             "add_nodes": len(genes) * 2        
         }
         
@@ -54,7 +54,7 @@ class GeneInteractionFinder:
 
         params = {
             "identifiers" : "%0d".join(genes),
-            "species" : 9606,                  # Human
+            "species" : 9606,  # Human
             "add_nodes": len(genes) * 2        
         }
         
@@ -80,8 +80,8 @@ if __name__ == "__main__":
         for e in full_edge_list:
             print(e.rstrip(), file=edge_list_out)
 
-    """
+
     img_data = geneIF.get_png(query_genes)
-    with open(f"{{pfx}.png", 'wb') as fh:
+    with open(f"{pfx}.png", 'wb') as fh:
         fh.write(img_data)
-    """
+    
